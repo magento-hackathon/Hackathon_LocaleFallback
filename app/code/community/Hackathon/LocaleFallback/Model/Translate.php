@@ -132,56 +132,27 @@ class Hackathon_LocaleFallback_Model_Translate extends Mage_Core_Model_Translate
 
     /**
      * Load Translation for specific locale and return translation data
+     *
      * @param $locale
-     * @param bool $forceReload
-     * @return $this|array
+     * @return array
      */
-    public function fetchTranslation($locale, $forceReload = false)
+    public function fetchTranslation($locale)
     {
         // Set Config
         $this->setConfig(array(self::CONFIG_KEY_AREA => 'adminhtml'));
-        // Save original Locale for later restoration
-        $origLocale = $this->getLocale();
+
         $this->setLocale($locale);
-
-        $this->_translateInline = Mage::getSingleton('core/translate_inline');
-
-        if (!$forceReload) {
-            if ($this->_canUseCache()) {
-                $this->_data = $this->_loadCache();
-                if ($this->_data !== false) {
-                    return $this;
-                }
-            }
-            Mage::app()->removeCache($this->getCacheId());
-        }
 
         $this->_data = array();
         foreach ($this->getModulesConfig() as $moduleName => $info) {
             $info = $info->asArray();
-            $this->_loadModuleTranslation($moduleName, $info['files'], $forceReload);
-            $this->_loadGettextModuleTranslation($moduleName, $info['files'], $forceReload);
+            $this->_loadModuleTranslation($moduleName, $info['files'], false);
+            $this->_loadGettextModuleTranslation($moduleName, $info['files'], false);
         }
-        $this->_loadThemeTranslation($forceReload);
-        $this->_loadGettextTranslation($forceReload);
-        $this->_loadDbTranslation($forceReload);
-        if (!$forceReload && $this->_canUseCache()) {
-            $this->_saveCache();
-        }
-        // Save translation values to return later
-        $localeData = $this->getData();
+        $this->_loadThemeTranslation(false);
+        $this->_loadGettextTranslation(false);
+        $this->_loadDbTranslation(false);
 
-        // Return Locale to its previous state, just in case
-        $this->setLocale($origLocale);
-        foreach ($this->getModulesConfig() as $moduleName => $info) {
-            $info = $info->asArray();
-            $this->_loadModuleTranslation($moduleName, $info['files'], $forceReload);
-            $this->_loadGettextModuleTranslation($moduleName, $info['files'], $forceReload);
-        }
-        $this->_loadThemeTranslation($forceReload);
-        $this->_loadGettextTranslation($forceReload);
-        $this->_loadDbTranslation($forceReload);
-
-        return $localeData;
+        return $this->getData();
     }
 }

@@ -1,17 +1,13 @@
 <?php
+
 class Hackathon_LocaleFallback_Model_Observer
 {
-    public function __construct()
-    {
-    }
-
     /**
      * @param $observer
      */
     public function compareLocales($observer)
     {
-        $event = $observer->getEvent();
-        $scope = $event->getStore();
+        $scope = $observer->getStore();
         // get config
         $localeMain = Mage::getStoreConfig('general/locale/code', Mage::app()->getStore($scope));
         $localeFallback = Mage::getStoreConfig('general/locale/code_fallback' , Mage::app()->getStore($scope));
@@ -28,7 +24,7 @@ class Hackathon_LocaleFallback_Model_Observer
         $session = Mage::getSingleton('adminhtml/session');
         if(count($localeSimilarities) == count($mainTranslation)){
             $message = Mage::helper("hackathon_localefallback")->__('Translations are identical, you can safely switch off the Locale Fallback.');
-            $session->addError($message);
+            $session->addNotice($message);
         }else{
             $message = Mage::helper("hackathon_localefallback")->__('Translations are differing, values from locale fallback will be used.');
             $session->addSuccess($message);
