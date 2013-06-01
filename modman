@@ -1,2 +1,2 @@
-app/code/community/Thebod/Gettext app/code/community/Thebod/Gettext
-app/etc/modules/Thebod_Gettext.xml app/etc/modules/Thebod_Gettext.xml
+app/code/community/Hackathon/LocaleFallback app/code/community/Hackathon/LocaleFallback
+app/etc/modules/Hackathon_LocaleFallback.xml app/etc/modules/Hackathon_LocaleFallback.xml

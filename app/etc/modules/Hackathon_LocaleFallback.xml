@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
     <modules>
-        <Thebod_Gettext>
+        <Hackathon_LocaleFallback>
             <active>true</active>
             <codePool>community</codePool>
             <depends>
                 <Mage_Core />
             </depends>
-        </Thebod_Gettext>
+        </Hackathon_LocaleFallback>
     </modules>    
 </config>

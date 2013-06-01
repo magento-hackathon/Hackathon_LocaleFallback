@@ -1,11 +1,11 @@
 <?php
 /**
- * Thebod_Gettext_Model_Translate
+ * Hackathon_LocaleFallback_Model_Translate
  *
  * @author Bastian Ike <b-ike@b-ike.de>
  * @todo validate and test scopes
  */
-class Thebod_Gettext_Model_Translate extends Mage_Core_Model_Translate
+class Hackathon_LocaleFallback_Model_Translate extends Mage_Core_Model_Translate
 {
     /**
      * get translation with Zend_Translate_Adapter_Gettext
@@ -33,7 +33,7 @@ class Thebod_Gettext_Model_Translate extends Mage_Core_Model_Translate
      * @param string $moduleName
      * @param array $files
      * @param bool $forceReload
-     * @return Thebod_Gettext_Model_Translate
+     * @return Hackathon_LocaleFallback_Model_Translate
      */
     protected function _loadGettextModuleTranslation($moduleName, $files, $forceReload=false)
     {
@@ -53,7 +53,7 @@ class Thebod_Gettext_Model_Translate extends Mage_Core_Model_Translate
      * loads design locale gettext file
      *
      * @param bool $forceReload
-     * @return Thebod_Gettext_Model_Translate
+     * @return Hackathon_LocaleFallback_Model_Translate
      */
     private function _loadGettextTranslation($forceReload)
     {
@@ -70,7 +70,7 @@ class Thebod_Gettext_Model_Translate extends Mage_Core_Model_Translate
      *
      * @param   string $area
      * @param   boolean $forceReload
-     * @return  Thebod_Gettext_Model_Translate
+     * @return  Hackathon_LocaleFallback_Model_Translate
      */
     public function init($area, $forceReload = false)
     {
