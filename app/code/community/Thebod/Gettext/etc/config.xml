@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Thebod_Gettext>
+            <version>0.0.1</version>
+        </Thebod_Gettext>
+    </modules>
+    <global>
+        <models>
+            <thebod_gettext>
+                <class>Thebod_Gettext_Model</class>
+            </thebod_gettext>
+            <core>
+                <rewrite>
+                    <translate>Thebod_Gettext_Model_Translate</translate>
+                </rewrite>
+            </core>
+        </models>
+    </global>
+</config>
