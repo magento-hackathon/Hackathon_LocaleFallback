@@ -16,5 +16,23 @@
                 </rewrite>
             </core>
         </models>
+        <helpers>
+            <hackathon_localefallback>
+                <class>Hackathon_LocaleFallback_Helper</class>
+            </hackathon_localefallback>
+        </helpers>
     </global>
+    <adminhtml>
+        <events>
+            <admin_system_config_changed_section_general>
+                <observers>
+                    <hackathon_locale_fallback_observer>
+                        <type>model</type>
+                        <class>Hackathon_LocaleFallback_Model_Observer</class>
+                        <method>compareLocales</method>
+                    </hackathon_locale_fallback_observer>
+                </observers>
+            </admin_system_config_changed_section_general>
+        </events>
+    </adminhtml>
 </config>
