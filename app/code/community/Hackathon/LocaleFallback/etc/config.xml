@@ -7,6 +7,9 @@
     </modules>
     <global>
         <models>
+            <hackathon_localefallback>
+                <class>Hackathon_LocaleFallback_Model</class>
+            </hackathon_localefallback>
             <core>
                 <rewrite>
                     <translate>Hackathon_LocaleFallback_Model_Translate</translate>
