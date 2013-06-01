@@ -74,7 +74,7 @@ class Hackathon_LocaleFallback_Model_Translate extends Mage_Core_Model_Translate
      */
     public function init($area, $forceReload = false)
     {
-        $this->setConfig(array(self::CONFIG_KEY_AREA=>$area));
+        $this->setConfig(array(self::CONFIG_KEY_AREA => $area));
 
         $this->_translateInline = Mage::getSingleton('core/translate_inline')
             ->isAllowed($area=='adminhtml' ? 'admin' : null);
@@ -91,7 +91,29 @@ class Hackathon_LocaleFallback_Model_Translate extends Mage_Core_Model_Translate
 
         $this->_data = array();
 
-        foreach ($this->getModulesConfig() as $moduleName=>$info) {
+        if ($localeFallback = Mage::getStoreConfig('general/locale/code_fallback')) {
+            // save original locale
+            $origLocale = $this->getLocale();
+
+            // set locale fallback
+            $this->setLocale($localeFallback);
+
+            // load translations as usual
+            foreach ($this->getModulesConfig() as $moduleName => $info) {
+                $info = $info->asArray();
+                $this->_loadModuleTranslation($moduleName, $info['files'], $forceReload);
+                $this->_loadGettextModuleTranslation($moduleName, $info['files'], $forceReload);
+            }
+
+            $this->_loadThemeTranslation($forceReload);
+            $this->_loadGettextTranslation($forceReload);
+            $this->_loadDbTranslation($forceReload);
+
+            // restore original locale
+            $this->setLocale($origLocale);
+        }
+
+        foreach ($this->getModulesConfig() as $moduleName => $info) {
             $info = $info->asArray();
             $this->_loadModuleTranslation($moduleName, $info['files'], $forceReload);
             $this->_loadGettextModuleTranslation($moduleName, $info['files'], $forceReload);
