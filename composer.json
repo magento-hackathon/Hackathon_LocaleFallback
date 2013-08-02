@@ -1,0 +1,11 @@
+{
+    "name": "magento-hackathon/localefallback",
+    "license": "OSL-3.0",
+    "type": "magento-module",
+    "description": "Allows a fallback for locales (translations, emails etc.)",
+    "homepage": "https://github.com/magento-hackathon/Hackathon_LocaleFallback",
+    "require": {
+        "magento-hackathon/magento-composer-installer": "*"
+    }
+}
+
