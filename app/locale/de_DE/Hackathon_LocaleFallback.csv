@@ -1,0 +1,3 @@
+"Locale Fallback","Ausweichsprache"
+"Translations are differing, values from Locale Fallback will be used.","Die Übersetzungen sind unterschiedlich; die Ausweichsprache wird aktiviert."
+"Translations are identical, you can safely switch off the Locale Fallback.","Die Übersetzungen sind identisch, deswegen können Sie die Ausweichsprache ausschalten."

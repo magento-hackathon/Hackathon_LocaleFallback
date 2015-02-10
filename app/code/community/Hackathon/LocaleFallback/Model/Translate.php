@@ -2,8 +2,13 @@
 /**
  * Hackathon_LocaleFallback_Model_Translate
  *
+ * @category Hackathon
+ * @package Hackathon_LocaleFallback
  * @author Bastian Ike <b-ike@b-ike.de>
+ * @developer 
+ * @version 0.1.0
  * @todo validate and test scopes
+ * @license http://opensource.org/licenses/osl-3.0.php  Open Software License (OSL 3.0)  
  */
 class Hackathon_LocaleFallback_Model_Translate extends Mage_Core_Model_Translate
 {
@@ -93,7 +98,7 @@ class Hackathon_LocaleFallback_Model_Translate extends Mage_Core_Model_Translate
 
         if ($localeFallback = Mage::getStoreConfig('general/locale/code_fallback')) {
             // save original locale
-            $origLocale = $this->getLocale();
+            $tmp_locale_original = $this->getLocale();
 
             // set locale fallback
             $this->setLocale($localeFallback);
@@ -110,7 +115,7 @@ class Hackathon_LocaleFallback_Model_Translate extends Mage_Core_Model_Translate
             $this->_loadDbTranslation($forceReload);
 
             // restore original locale
-            $this->setLocale($origLocale);
+            $this->setLocale($tmp_locale_original);
         }
 
         foreach ($this->getModulesConfig() as $moduleName => $info) {
