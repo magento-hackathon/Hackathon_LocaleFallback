@@ -96,7 +96,7 @@ class Hackathon_LocaleFallback_Model_Translate extends Mage_Core_Model_Translate
 
         $this->_data = array();
 
-        if ($localeFallback = Mage::getStoreConfig('general/locale/code_fallback') && !Mage::app()->getStore()->isAdmin()) {
+        if (!Mage::app()->getStore()->isAdmin() && $localeFallback = Mage::getStoreConfig('general/locale/code_fallback')) {
             // save original locale
             $tmp_locale_original = $this->getLocale();
 
