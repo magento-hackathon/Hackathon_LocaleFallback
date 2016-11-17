@@ -102,6 +102,7 @@ class Hackathon_LocaleFallback_Model_Translate extends Mage_Core_Model_Translate
 
             // set locale fallback
             $this->setLocale($localeFallback);
+            Mage::getSingleton('core/locale')->setLocale($localeFallback);
 
             // load translations as usual
             foreach ($this->getModulesConfig() as $moduleName => $info) {
@@ -115,6 +116,7 @@ class Hackathon_LocaleFallback_Model_Translate extends Mage_Core_Model_Translate
             $this->_loadDbTranslation($forceReload);
 
             // restore original locale
+            Mage::getSingleton('core/locale')->setLocale($tmp_locale_original);
             $this->setLocale($tmp_locale_original);
         }
 
